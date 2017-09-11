@@ -30,23 +30,16 @@ EXPRESSAO:
         salvar_imagem($1, &I);
         liberar_imagem(&I);
                           }
-    ;
-
-BRILHO: 
     | STRING IGUAL STRING OPE NUM{
         printf("Aplicando %s em %s\n", $5, $3);
         brilho($3, $5, $4);
         salvar_imagem($1, &I);
         liberar_imagem(&I);
-                                 }  
-
-    ;
-
-VALORMAXIMO:
+                                 }
    | STRINGX{
         printf("Achando o valor máximo de %s\n", $1);
         busca($1);
-              } 
+              }
    ;
 %%
 

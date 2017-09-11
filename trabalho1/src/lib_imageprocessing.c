@@ -83,39 +83,39 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
 /*Função que aplica o valor do brilho na imagem*/
 void brilho (imagem *I, float intensidade, char ope){
-   float x, y; 
+   float x, y;
    int i, j;
    /*Aqui, pegamos as matrizes das cores através de alocação dinâmica e definimos o # de colunas e # de linhas da imagem */
-   I.width = x;
-   I.height = y;
-   I.r = malloc(sizeof(float) * x * y);
-   I.g = malloc(sizeof(float) * x * y);
-   I.b = malloc(sizeof(float) * x * y);
+   I->width = x;
+   (*I).height = y;
+   I->r = malloc(sizeof(float) * x * y);
+   I->g = malloc(sizeof(float) * x * y);
+   I->b = malloc(sizeof(float) * x * y);
 
    if(ope == '*'){
 	   for( j = 0, j < y, j++){
 	      for( i = 0, i < x, i++){
-		   I.r[i][j] = I.r[i][j] * intensidade;
-		   I.g[i][j] = I.g[i][j] * intensidade;
-		   I.b[i][j] = I.b[i][j] * intensidade;
+		   I->r[i][j] = I->r[i][j] * intensidade;
+		   I->g[i][j] = I->g[i][j] * intensidade;
+		   I->b[i][j] = I->b[i][j] * intensidade;
 	      }
 	   }
-   } 
+   }
 
    if(ope == '/'){
 	   for( j = 0, j < y, j++){
 	      for( i = 0, i < x, i++){
-		   I.r[i][j] = I.r[i][j] / intensidade;
-		   I.g[i][j] = I.g[i][j] / intensidade;
-		   I.b[i][j] = I.b[i][j] / intensidade;
+		   I->r[i][j] = I->r[i][j] / intensidade;
+		   I->g[i][j] = I->g[i][j] / intensidade;
+		   I->b[i][j] = I->b[i][j] / intensidade;
 	      }
 	   }
-   } 
-   return I;   
-} 
+   }
+   return I;
+}
 
 void busca (imagem *I){
-   float x, y; 
+   float x, y;
    int i, j, max=0, soma;
 
    I.width = x;
@@ -131,8 +131,8 @@ void busca (imagem *I){
 			max = soma;
 		}
       }
-   }   
-return max;  
+   }
+return max;
 }
 
 
