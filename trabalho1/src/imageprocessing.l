@@ -21,7 +21,11 @@ void yyerror(char *);
           yylval.strval[i] = yytext[i];
 
         yylval.strval[yyleng] = '\0';
-        printf ("Achei brilho: %s\n", yylval.strval);
+
+	yylval.valor = atof(yytext);
+
+        printf ("Achei brilho: %f\n", yylval.valor);
+
         return NUM;
        }
 

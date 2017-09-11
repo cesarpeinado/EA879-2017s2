@@ -82,55 +82,58 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
 
 /*Função que aplica o valor do brilho na imagem*/
-void brilho (imagem *I, float intensidade, char ope){
+void brilho (imagem I, float intensidade, char ope){
    float x, y;
    int i, j;
    /*Aqui, pegamos as matrizes das cores através de alocação dinâmica e definimos o # de colunas e # de linhas da imagem */
-   I->width = x;
-   (*I).height = y;
-   I->r = malloc(sizeof(float) * x * y);
-   I->g = malloc(sizeof(float) * x * y);
-   I->b = malloc(sizeof(float) * x * y);
+   I.width = x;
+   I.height = y;
 
-   if(ope == '*'){
-	   for( j = 0, j < y, j++){
-	      for( i = 0, i < x, i++){
-		   I->r[i][j] = I->r[i][j] * intensidade;
-		   I->g[i][j] = I->g[i][j] * intensidade;
-		   I->b[i][j] = I->b[i][j] * intensidade;
-	      }
+ x = FreeImage_GetWidth(bitmapIn);
+  y = FreeImage_GetHeight(bitmapIn);
+
+  I.width = x;
+  I.height = y;
+  I.r = malloc(sizeof(float) * x * y);
+  I.g = malloc(sizeof(float) * x * y);
+  I.b = malloc(sizeof(float) * x * y);
+
+	printf("passei aqui\n");
+	printf("ope %c brilho %f \n", ope, intensidade);
+
+   if(ope == 'd'){
+printf("multiplicacao\n");
+	   for( j = 0; j < (x*y); j++){
+	      
+	      I.r[j] = I.r[j] * 0;
+	      I.g[j] = I.g[j] * 0;
+	      I.b[j] = I.b[j] * 0;
 	   }
    }
 
    if(ope == '/'){
-	   for( j = 0, j < y, j++){
-	      for( i = 0, i < x, i++){
-		   I->r[i][j] = I->r[i][j] / intensidade;
-		   I->g[i][j] = I->g[i][j] / intensidade;
-		   I->b[i][j] = I->b[i][j] / intensidade;
-	      }
+printf("divisao\n");
+	   for( j = 0; j < (x*y); j++){
+	      I.r[j] = I.r[j] / intensidade;
+	      I.g[j] = I.g[j] / intensidade;
+	      I.b[j] = I.b[j] / intensidade;
 	   }
+
    }
-   return I;
 }
 
-void busca (imagem *I){
+void busca (imagem I){
    float x, y;
    int i, j, max=0, soma;
 
    I.width = x;
    I.height = y;
-   I.r = malloc(sizeof(float) * x * y);
-   I.g = malloc(sizeof(float) * x * y);
-   I.b = malloc(sizeof(float) * x * y);
 
-   for( j = 0, j < y, j++){
-      for( i = 0, i < x, i++){
-	   soma = I.r[i][j] + I.g[i][j] + I.b[i][j];
+   for( j = 0; j < x*y; j++){
+	   soma = I.r[j] + I.g[j] + I.b[j];
 		if (soma > max){
-			max = soma;
+		   max = soma;
 		}
-      }
    }
 return max;
 }
