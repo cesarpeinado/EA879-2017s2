@@ -115,28 +115,18 @@ void brilho (imagem I, float intensidade, char ope, char *nome_do_arquivo){
    }
 }
 
-int busca (imagem I){
+void busca (imagem I){
    float x, y;
    int i, j, max=0, soma;
 
    x = I.width;
    y = I.height;
 
-   for( j = 0; j < x*y; j++){
-	   soma = I.r[j] + I.g[j] + I.b[j];
+   for( j = 0; j < 5038848; j++){
+	   soma = I.r[j] + I.g[j] + I.b[j]; //printf("ENTREI\n");
 		if (soma > max){
 		   max = soma;
 		}
    }
-return max;
+	printf("Pixel maximo: %d\n", max);
 }
-
-
-
-
-
-
-
-
-
-
