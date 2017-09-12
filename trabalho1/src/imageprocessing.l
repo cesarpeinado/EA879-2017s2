@@ -44,10 +44,10 @@ void yyerror(char *);
 
 
 (\[[a-zA-Z0-9\.]+\])  {
-        for (int i = 0; i < yyleng; i++ )
-          yylval.strval[i] = yytext[i];
-
-        yylval.strval[yyleng] = '\0';
+        for (int i = 1; i < yyleng -1; i++ ){
+        	yylval.strval[i-1] = yytext[i];
+	}
+	yylval.strval[yyleng-1] = '\0';       
         printf ("Achei nome: %s\n", yylval.strval);
         return STRINGX;
        }
@@ -58,7 +58,7 @@ void yyerror(char *);
         }
 
 
-[*/]     {
+[*/]     {printf("%s\n", yytext);
           return OPE;
         }
 

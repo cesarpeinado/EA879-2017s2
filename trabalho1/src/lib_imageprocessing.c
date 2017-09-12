@@ -12,6 +12,7 @@ void salvar_imagem(char *nome_do_arquivo);
 void liberar_imagem(imagem *i);
  */
 
+
 imagem abrir_imagem(char *nome_do_arquivo) {
   FIBITMAP *bitmapIn;
   int x, y;
@@ -82,38 +83,34 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
 
 /*Função que aplica o valor do brilho na imagem*/
-void brilho (imagem I, float intensidade, char ope){
-   float x, y;
+void brilho (imagem I, float intensidade, char ope, char *nome_do_arquivo){
+   long int x, y;
    int i, j;
    /*Aqui, pegamos as matrizes das cores através de alocação dinâmica e definimos o # de colunas e # de linhas da imagem */
-   I.width = x;
-   I.height = y;
+	abrir_imagem(nome_do_arquivo);
+  
 
- x = FreeImage_GetWidth(bitmapIn);
-  y = FreeImage_GetHeight(bitmapIn);
-
-  I.width = x;
-  I.height = y;
-  I.r = malloc(sizeof(float) * x * y);
-  I.g = malloc(sizeof(float) * x * y);
-  I.b = malloc(sizeof(float) * x * y);
-
-	printf("passei aqui\n");
 	printf("ope %c brilho %f \n", ope, intensidade);
-
+	      //printf("x = %d, y = %d, x*y =%d\n", x, y);
    if(ope == 'd'){
 printf("multiplicacao\n");
-	   for( j = 0; j < (x*y); j++){
-	      
-	      I.r[j] = I.r[j] * 0;
-	      I.g[j] = I.g[j] * 0;
-	      I.b[j] = I.b[j] * 0;
-	   }
+	   for( j = 0; j < 5038848; j++){
+	     // printf("entrou no for\n");
+	      I.r[j] = I.r[j] * intensidade;
+	      I.g[j] = I.g[j] * intensidade;
+	      I.b[j] = I.b[j] * intensidade;
+	if(I.r[j] > 255)
+		I.r[j] = 255;
+	if(I.g[j] > 255)
+		I.g[j] = 255;
+	if(I.b[j] > 255)
+		I.b[j] = 255;
+	   }	
    }
 
-   if(ope == '/'){
+   if(ope == 'h'){
 printf("divisao\n");
-	   for( j = 0; j < (x*y); j++){
+	   for( j = 0; j < 5038848; j++){
 	      I.r[j] = I.r[j] / intensidade;
 	      I.g[j] = I.g[j] / intensidade;
 	      I.b[j] = I.b[j] / intensidade;

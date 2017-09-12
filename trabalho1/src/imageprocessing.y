@@ -37,12 +37,13 @@ EXPRESSAO:
     | STRING IGUAL STRING OPE NUM{  
         imagem I = abrir_imagem($3);
         printf("Li imagem %d por %d\n", I.width, I.height);
+	printf("%c ahsduadh\n", $4);
         printf("Aplicando %.2f em %s\n", $5, $3);
-        brilho(I, $5, $4);
+        brilho(I, $5, $4, $3);
         salvar_imagem($1, &I);
         liberar_imagem(&I);
                                  }
-   | STRINGX{
+   | STRINGX {
         imagem I = abrir_imagem($1);
         printf("Achando o valor máximo de %s\n", $1);
         busca(I);
