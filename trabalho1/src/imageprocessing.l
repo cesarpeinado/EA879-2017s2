@@ -58,8 +58,9 @@ void yyerror(char *);
         }
 
 
-[*/]     {printf("%s\n", yytext);
-          return OPE;
+[*/]     {
+	yylval.cval = (char) yytext[0];	
+          return CONTA;
         }
 
 

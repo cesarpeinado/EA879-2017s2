@@ -11,12 +11,14 @@ int yylex(void);
 %}
 %union {
   char    strval[50];
+  char    cval;
   int     ival;
   float   valor;
 }
 %token <strval> STRING STRINGX 
-%token <ival> VAR IGUAL EOL ASPA OPE
+%token <ival> VAR IGUAL EOL ASPA
 %token <valor> NUM
+%token <cval> CONTA
 %left SOMA
 
 %%
@@ -34,10 +36,9 @@ EXPRESSAO:
         salvar_imagem($1, &I);
         liberar_imagem(&I);
                           }
-    | STRING IGUAL STRING OPE NUM{  
+    | STRING IGUAL STRING CONTA NUM{  
         imagem I = abrir_imagem($3);
         printf("Li imagem %d por %d\n", I.width, I.height);
-	printf("%c ahsduadh\n", $4);
         printf("Aplicando %.2f em %s\n", $5, $3);
         brilho(I, $5, $4, $3);
         salvar_imagem($1, &I);

@@ -84,16 +84,13 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
 /*Função que aplica o valor do brilho na imagem*/
 void brilho (imagem I, float intensidade, char ope, char *nome_do_arquivo){
-   long int x, y;
+   int x, y;
    int i, j;
    /*Aqui, pegamos as matrizes das cores através de alocação dinâmica e definimos o # de colunas e # de linhas da imagem */
 	abrir_imagem(nome_do_arquivo);
   
-
-	printf("ope %c brilho %f \n", ope, intensidade);
 	      //printf("x = %d, y = %d, x*y =%d\n", x, y);
-   if(ope == 'd'){
-printf("multiplicacao\n");
+   if(ope == '*'){
 	   for( j = 0; j < 5038848; j++){
 	     // printf("entrou no for\n");
 	      I.r[j] = I.r[j] * intensidade;
@@ -108,8 +105,7 @@ printf("multiplicacao\n");
 	   }	
    }
 
-   if(ope == 'h'){
-printf("divisao\n");
+   if(ope == '/'){
 	   for( j = 0; j < 5038848; j++){
 	      I.r[j] = I.r[j] / intensidade;
 	      I.g[j] = I.g[j] / intensidade;
@@ -119,12 +115,12 @@ printf("divisao\n");
    }
 }
 
-void busca (imagem I){
+int busca (imagem I){
    float x, y;
    int i, j, max=0, soma;
 
-   I.width = x;
-   I.height = y;
+   x = I.width;
+   y = I.height;
 
    for( j = 0; j < x*y; j++){
 	   soma = I.r[j] + I.g[j] + I.b[j];
