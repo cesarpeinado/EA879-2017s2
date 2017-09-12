@@ -47,7 +47,7 @@ EXPRESSAO:
    | STRINGX {
         imagem I = abrir_imagem($1);
         printf("Achando o valor máximo de %s\n", $1);
-        busca(I);
+        busca(I, $1);
               }
    ;
 %%
