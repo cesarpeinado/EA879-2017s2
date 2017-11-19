@@ -1,19 +1,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
 #include "imageprocessing.h"
-
 #include <FreeImage.h>
+#include <pthread.h>
 
-/*
-imagem abrir_imagem(char *nome_do_arquivo);
-void salvar_imagem(char *nome_do_arquivo);
-void liberar_imagem(imagem *i);
- */
-
-
-imagem abrir_imagem(char *nome_do_arquivo) {
+imagem abrir_imagem(char *nome_do_arquivo){
   FIBITMAP *bitmapIn;
   int x, y;
   RGBQUAD color;
@@ -49,7 +41,6 @@ imagem abrir_imagem(char *nome_do_arquivo) {
     }
    }
   return I;
-
 }
 
 void liberar_imagem(imagem *I) {
@@ -85,13 +76,23 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 /*Função que aplica o valor do brilho na imagem*/
 void brilho (imagem I, float intensidade, char ope, char *nome_do_arquivo){
    int x, y;
-   int i, j;
-   /*Aqui, pegamos as matrizes das cores através de alocação dinâmica e definimos o # de colunas e # de linhas da imagem */
-	abrir_imagem(nome_do_arquivo);
+   int i, j, w;
+   
+   
+
+/*Aqui, pegamos as matrizes das cores através de alocação dinâmica e definimos o # de colunas e # de linhas da imagem */
+   abrir_imagem(nome_do_arquivo);
    x = I.width;
    y = I.height;
-  
-	      printf("x = %d, y = %d, x*y =%d\n", x, y);
+
+/* Criação de threads de acordo com o tamanho de colunas */
+   for(w=0; w<x; w++){
+   pthread_t = coluna1, coluna2; //COMO FAZER ISSO PRA NUMERO ARBITRARIO?
+   pthread_create(&coluna1, NULL, func, NULL);
+   pthread_create(&coluna2, NULL, func, NULL);
+	
+}
+
    if(ope == '*'){
 	   for( j = 0; j < x*y; j++){
 	      I.r[j] = I.r[j] * intensidade;
@@ -114,21 +115,4 @@ void brilho (imagem I, float intensidade, char ope, char *nome_do_arquivo){
 	   }
 
    }
-}
-
-void busca (imagem I, char *nome_do_arquivo){
-   float x, y;
-   int i, j, max=0, soma;
-
-   abrir_imagem(nome_do_arquivo);
-   x = I.width;
-   y = I.height;
-
-   for( j = 0; j < x*y; j++){
-	   soma = I.r[j] + I.g[j] + I.b[j]; 
-		if (soma > max){
-		   max = soma;
-		}
-   }
-	printf("Pixel maximo: %d\n", max);
 }
